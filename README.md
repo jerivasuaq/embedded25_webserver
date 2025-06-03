@@ -16,7 +16,7 @@ source .venv/bin/activate
 
 # Install requirements
 
-Create a requierements file.
+Create a `requierements.txt` file.
 
 ``` requirements.txt
 flask
@@ -34,5 +34,5 @@ pip3 install -r requirements.txt
 flask --app main run
 ```
 
-- visit (http://127.0.0.1:5000/)[http://127.0.0.1:5000/]
+- visit [http://127.0.0.1:5000/](http://127.0.0.1:5000/)
 
