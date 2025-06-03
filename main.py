@@ -1,3 +1,4 @@
+import datetime
 from flask import Flask
 from flask import render_template
 from flask import request
@@ -17,14 +18,14 @@ def health():
 def monitor():
 
     # calculate some metrics here
+    data = []
 
-    data = [
-        {"datetime": "2023-10-01T12:00:00Z", "temperature": "22.5"},
-        {"datetime": "2023-10-01T12:01:00Z", "temperature": "22.7"},
-        {"datetime": "2023-10-01T12:02:00Z", "temperature": "22.6"},
-        {"datetime": "2023-10-01T12:03:00Z", "temperature": "22.8"},
-        {"datetime": "2023-10-01T12:04:00Z", "temperature": "22.9"},
-    ]
+    with open('data.txt', 'r') as f:
+        for line in f:
+            parts = line.strip().split(',')
+            if len(parts) == 2:
+                datetime, temperature = parts
+                data.append({'datetime': datetime, 'temperature': float(temperature)})
 
     person = "Pepe"
    
@@ -33,15 +34,15 @@ def monitor():
 @app.route("/data/append")
 def data_append():
 
-    datetime = request.args.get('datetime')
+    dt = datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S')
     temp = request.args.get('temp')
-    if not datetime or not temp:
+    if not dt:
         return "<p>Error: Missing parameters</p>", 400
     
     # Here you would typically append the data to a database or a file
-    print(f"Appending data: datetime={datetime}, temp={temp}")
+    print(f"Appending data: datetime={dt}, temp={temp}")
 
     with open('data.txt', 'a') as f:
-        f.write(f"{datetime},{temp}\n")
+        f.write(f"{dt},{temp}\n")
 
     return "<p>Data appended successfully.</p>"
