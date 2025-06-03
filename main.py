@@ -1,5 +1,6 @@
 from flask import Flask
 from flask import render_template
+from flask import request
 
 app = Flask(__name__)
 
@@ -28,3 +29,19 @@ def monitor():
     person = "Pepe"
    
     return render_template('monitor.html', data=data, person=person)
+
+@app.route("/data/append")
+def data_append():
+
+    datetime = request.args.get('datetime')
+    temp = request.args.get('temp')
+    if not datetime or not temp:
+        return "<p>Error: Missing parameters</p>", 400
+    
+    # Here you would typically append the data to a database or a file
+    print(f"Appending data: datetime={datetime}, temp={temp}")
+
+    with open('data.txt', 'a') as f:
+        f.write(f"{datetime},{temp}\n")
+
+    return "<p>Data appended successfully.</p>"
