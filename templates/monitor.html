@@ -103,6 +103,12 @@
             document.getElementById('tempChart'),
             config
         );
+
+        // Auto-refresh the page every 10 seconds
+        setTimeout(function() {
+            window.location.reload();
+        }, 3000);
+
     </script>
 </body>
 
