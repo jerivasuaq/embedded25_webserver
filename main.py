@@ -7,8 +7,7 @@ app = Flask(__name__)
 def main():
     name = "Pepe"
 
-    return render_template('main.html', person=name)
-
+    return render_template('fb.html', person=name)
 
 @app.route("/health")
 def health():
