@@ -48,6 +48,11 @@
 </head>
 
 <body>
+    {% if person %}
+        Hello, {{ person }}!
+    {% else %}
+        Hello, Guest!
+    {% endif %}
     <div class="monitor-container">
         <div class="monitor-title">Temperature Monitor</div>
         <table class="fb-table">

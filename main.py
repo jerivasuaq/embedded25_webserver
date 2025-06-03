@@ -14,5 +14,17 @@ def health():
 
 @app.route("/monitor")
 def monitor():
+
+    # calculate some metrics here
+
+    data = [
+        {"datetime": "2023-10-01T12:00:00Z", "temperature": "22.5"},
+        {"datetime": "2023-10-01T12:01:00Z", "temperature": "22.7"},
+        {"datetime": "2023-10-01T12:02:00Z", "temperature": "22.6"},
+        {"datetime": "2023-10-01T12:03:00Z", "temperature": "22.8"},
+        {"datetime": "2023-10-01T12:04:00Z", "temperature": "22.9"},
+    ]
+
+    person = "Pepe"
    
-    return render_template('monitor.html')
+    return render_template('monitor.html', data=data, person=person)
