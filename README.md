@@ -36,3 +36,13 @@ flask --app main run
 
 - visit [http://127.0.0.1:5000/](http://127.0.0.1:5000/)
 
+# Test
+
+test the monitor using
+
+``` python
+# use requrest to test the endpoints
+import requests
+print("Testing /health endpoint...")
+response = requests.get("http://localhost:5000/data/append?temp=25")
+```
