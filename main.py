@@ -11,3 +11,8 @@ def index():
 def health():
    
     return "<p>Server is up and running.</p>"
+
+@app.route("/monitor")
+def monitor():
+   
+    return render_template('monitor.html')

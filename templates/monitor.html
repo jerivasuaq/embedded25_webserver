@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Monitor – Embedded systems</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        .monitor-container {
+            max-width: 900px;
+            margin: 40px auto;
+            background: #fff;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            padding: 32px;
+        }
+        .monitor-title {
+            font-size: 28px;
+            color: #1877f2;
+            font-weight: bold;
+            margin-bottom: 24px;
+        }
+        .fb-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 32px;
+        }
+        .fb-table th, .fb-table td {
+            padding: 12px 10px;
+            border-bottom: 1px solid #f0f2f5;
+            text-align: left;
+        }
+        .fb-table th {
+            background: #f0f2f5;
+            color: #1877f2;
+            font-weight: bold;
+        }
+        .fb-table tr:last-child td {
+            border-bottom: none;
+        }
+        .chart-container {
+            width: 100%;
+            height: 350px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="monitor-container">
+        <div class="monitor-title">Temperature Monitor</div>
+        <table class="fb-table">
+            <thead>
+                <tr>
+                    <th>Date & Time</th>
+                    <th>Temperature (°C)</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr><td>2025-06-02 08:00</td><td>22.1</td></tr>
+                <tr><td>2025-06-02 09:00</td><td>22.8</td></tr>
+                <tr><td>2025-06-02 10:00</td><td>23.5</td></tr>
+                <tr><td>2025-06-02 11:00</td><td>24.0</td></tr>
+                <tr><td>2025-06-02 12:00</td><td>24.7</td></tr>
+                <tr><td>2025-06-02 13:00</td><td>25.2</td></tr>
+                <tr><td>2025-06-02 14:00</td><td>25.6</td></tr>
+                <tr><td>2025-06-02 15:00</td><td>25.3</td></tr>
+                <tr><td>2025-06-02 16:00</td><td>24.9</td></tr>
+                <tr><td>2025-06-02 17:00</td><td>24.2</td></tr>
+            </tbody>
+        </table>
+        <div class="chart-container">
+            <canvas id="tempChart"></canvas>
+        </div>
+    </div>
+    <script>
+        const labels = [
+            "08:00", "09:00", "10:00", "11:00", "12:00",
+            "13:00", "14:00", "15:00", "16:00", "17:00"
+        ];
+        const data = {
+            labels: labels,
+            datasets: [{
+                label: 'Temperature (°C)',
+                data: [22.1, 22.8, 23.5, 24.0, 24.7, 25.2, 25.6, 25.3, 24.9, 24.2],
+                fill: false,
+                borderColor: '#1877f2',
+                backgroundColor: '#1877f2',
+                tension: 0.2,
+                pointRadius: 5,
+                pointBackgroundColor: '#fff',
+                pointBorderColor: '#1877f2',
+                pointBorderWidth: 2
+            }]
+        };
+        const config = {
+            type: 'line',
+            data: data,
+            options: {
+                responsive: true,
+                plugins: {
+                    legend: {
+                        display: false
+                    }
+                },
+                scales: {
+                    x: {
+                        title: {
+                            display: true,
+                            text: 'Time'
+                        }
+                    },
+                    y: {
+                        title: {
+                            display: true,
+                            text: 'Temperature (°C)'
+                        },
+                        beginAtZero: false
+                    }
+                }
+            }
+        };
+        new Chart(
+            document.getElementById('tempChart'),
+            config
+        );
+    </script>
+</body>
+
+</html>
