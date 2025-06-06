@@ -17,13 +17,6 @@ source .venv/bin/activate
 
 # Install requirements
 
-Create a `requierements.txt` file.
-
-``` requirements.txt
-flask
-```
-
-install requirements:
 
 ```
 pip3 install -r requirements.txt
